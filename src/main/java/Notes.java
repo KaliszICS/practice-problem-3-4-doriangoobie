@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Random;
 
 class Notes {
 	public static void main(String[] args) {
@@ -19,40 +21,32 @@ class Notes {
 		System.out.println(Arrays.toString(randomArray));
 	}
 
+	
 	public static void mergeSort(int[] arr) {
 
-		//base case
-
-		if (arr.length < 2) {//arr.length == 0 or == 1
+		if (arr.length < 2) {
 			return;
 		}
 
-		// recursive step
+		int[] left;
+		int[] right;
 
-		//split the array into 2
+		left = new int[arr.length/2];
+		right = new int[arr.length - left.length];
 
-		int mid = arr.length / 2;
-
-		int[] left = new int[mid];
-		int[] right = new int[arr.length - mid];
-
-		//copy the elements
-
-		//left array
+		//copy values over
 		for (int i = 0; i < left.length; i++) {
 			left[i] = arr[i];
 		}
-
-		//right array
 		for (int i = 0; i < right.length; i++) {
-			right[i] = arr[i+mid];
+			right[i] = arr[left.length + i];
 		}
 
 		mergeSort(left);
 		mergeSort(right);
 
 		merge(left, right, arr);
-		
+
 	}
 
 	public static void merge(int[] left, int[] right, int[] og) {
@@ -60,60 +54,67 @@ class Notes {
 		int leftIndex = 0;
 		int rightIndex = 0;
 		int ogIndex = 0;
-		
+
 		while(leftIndex < left.length && rightIndex < right.length) {
 			if (left[leftIndex] < right[rightIndex]) {
-				og[ogIndex] = left[leftIndex++]; //line of code runs before ++
-				// leftIndex++;
+				og[ogIndex] = left[leftIndex];
+				leftIndex++;
 			}
 			else {
-				og[ogIndex] = right[rightIndex++];
-				// rightIndex++;
+				og[ogIndex] = right[rightIndex];
+				rightIndex++;
 			}
 			ogIndex++;
 		}
 
-		while(leftIndex < left.length) {
-			og[ogIndex++] = left[leftIndex++]; //line of code runs before ++
+		while(leftIndex < left.length) {	
+			og[ogIndex] = left[leftIndex];
+			leftIndex++;
+			ogIndex++;
 		}
 
-		while(rightIndex < right.length) {
-			og[ogIndex++] = right[rightIndex++]; //line of code runs before ++
-		}	
+		while(rightIndex < right.length) {	
+			og[ogIndex] = right[rightIndex];
+			rightIndex++;
+			ogIndex++;
+		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
-	// public static void mergeSort(int[] arr) {
+	
+	
+	
+	
+	
+	
+	
 
-	// 	mergeSortHelper(arr);
-		
-	// }
 
-	// public static void mergeSortHelper(int arr[]) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// public static void mergeSort(int arr[]) {
 
 	// 	//BASE CASE
 
@@ -140,8 +141,8 @@ class Notes {
 	// 	// 	leftArray[i] = arr[i+middle];
 	// 	// }
 
-	// 	mergeSortHelper(leftArray);
-	// 	mergeSortHelper(rightArray);
+	// 	mergeSort(leftArray);
+	// 	mergeSort(rightArray);
 		
 	// 	//Sort - merge them
 
@@ -185,94 +186,4 @@ class Notes {
 	// }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-	// public static void mergeSort(int[] arr) {
-
-	// 	mergeSortHelper(arr, arr.length);
-	// }
-
-	// public static void mergeSortHelper(int[] arr, int size) {
-
-	// 	//base case
-
-	// 	if (size < 2) {
-	// 		return;
-	// 	}
-
-	// 	//created our arrays
-	// 	int middle = size / 2;
-	// 	int[] leftArray = new int[middle];
-	// 	int[] rightArray = new int[size - middle];
-
-	// 	// fill the arrays, copy from arr
-	// 	//copies left side elements to leftArray
-	// 	for (int i = 0; i < middle; i++) {
-	// 		leftArray[i] = arr[i];
-	// 	}
-
-	// 	//copies right side elements to rightArray
-	// 	for (int i = middle; i < size; i++) {
-	// 		rightArray[i - middle] = arr[i];
-	// 	}
-
-	// 	mergeSortHelper(leftArray, middle);
-	// 	mergeSortHelper(rightArray, size-middle);
-
-	// 	//MERGE
-	// 	merge(leftArray, rightArray, arr, middle, size-middle);
-	// } 
-
-	// //another helper function
-
-	// public static void merge(int[] left, int[] right, int[] og, int leftSize, int rightSize) {
-
-	// 	int leftIndex = 0;
-	// 	int rightIndex = 0;
-	// 	int ogIndex = 0;
-
-	// 	while (leftIndex < leftSize && rightIndex < rightSize) {
-	// 		if (left[leftIndex] < right[rightIndex]) {
-	// 			og[ogIndex] = left[leftIndex];
-	// 			ogIndex++;
-	// 			leftIndex++;
-	// 		}
-	// 		else {
-	// 			og[ogIndex] = right[rightIndex];
-	// 			ogIndex++;
-	// 			rightIndex++;
-	// 		}
-	// 	}
-	// 	//Empty whichever array still has elements to go through
-		
-	// 	while (leftIndex < leftSize) {
-	// 		og[ogIndex] = left[leftIndex];
-	// 		ogIndex++;
-	// 		leftIndex++;
-	// 	}
-
-	// 	while (rightIndex < rightSize) {
-	// 		og[ogIndex] = right[rightIndex];
-	// 		ogIndex++;
-	// 		rightIndex++;
-	// 	}
-		
-	// }
 }
